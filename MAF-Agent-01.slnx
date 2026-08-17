@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MAF-Agent-01/MAF-Agent-01.csproj" />
+  <Project Path="MAF-Agent-02/MAF-Agent-02.csproj" />
+</Solution>
