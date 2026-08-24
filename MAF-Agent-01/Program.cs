@@ -8,7 +8,7 @@ var projectEndpoint = new Uri(Environment.GetEnvironmentVariable("FOUNDRY_PROJEC
     ?? throw new InvalidOperationException("FOUNDRY_PROJECT_ENDPOINT is not set."));
 var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
 
-AIAgent agent = new AIProjectClient(projectEndpoint, new AzureCliCredential())
+AIAgent agent = new AIProjectClient(projectEndpoint, new DefaultAzureCredential())
     .AsAIAgent(
         model: deployment,
         instructions: "You are a friendly assistant. Keep your answers brief.",

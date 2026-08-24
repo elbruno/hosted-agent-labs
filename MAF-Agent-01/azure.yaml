@@ -2,15 +2,15 @@
 
 name: maf-agent-01
 services:
-    bruno-byok:
+    bruno-byok-02:
         host: azure.ai.project
-        endpoint: https://bruno-byok-resource.services.ai.azure.com/api/projects/bruno-byok
+        endpoint: https://bruno-byok-02-resource.services.ai.azure.com/api/projects/bruno-byok-02
     maf-agent-01:
         project: .
         host: azure.ai.agent
         language: csharp
         uses:
-            - bruno-byok
+            - bruno-byok-02
         environmentVariables:
             - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
               value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}

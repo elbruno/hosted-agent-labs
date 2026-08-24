@@ -1,0 +1,38 @@
+[
+  {
+    "id": "core_direct_answer",
+    "description": "The response provides an explicit, substantive answer that addresses all explicitly stated subrequests, and that core answer appears in sentence 1 or 2 (assessable via core_answer_presence = true and core_answer_location ≤ 2).",
+    "weight": 9
+  },
+  {
+    "id": "brevity_or_concise_summary",
+    "description": "The reply is concise: total sentences ≤ 2 OR total tokens ≤ 60. For legitimately broad/complex requests, the first 1–2 sentences must provide a concise summary that meets those limits and is immediately followed by an explicit, succinct offer to expand (detectable via follow_up_offer_flag); longer expansions are allowed only after that concise summary.",
+    "weight": 5
+  },
+  {
+    "id": "minimal_extraneous_content",
+    "description": "The response avoids unrelated digressions or unsolicited procedures: the proportion of tokens unrelated to the core answer is low (recommended extraneous_content_ratio \u003c 0.25) and the reply does not introduce new, unrequested multi-step plans.",
+    "weight": 4
+  },
+  {
+    "id": "friendly_tone",
+    "description": "The reply exhibits a friendly/helpful tone, indicated by at least one polite or positive lexical marker (e.g., 'please', 'thank you', 'happy to help') or an equivalent brief warm phrasing (measurable via polite_marker_count ≥ 1 or equivalent phrasing).",
+    "weight": 3
+  },
+  {
+    "id": "no_unnecessary_boilerplate",
+    "description": "The reply does not contain long safety/legal boilerplate or other lengthy text that is unrelated to answering the request (assessable via unnecessary_boilerplate_flag = false and by checking whether long disclaimer text contributes substantially to token_count without addressing the query).",
+    "weight": 2
+  },
+  {
+    "id": "no_role_absolving_language",
+    "description": "The reply avoids role-absolving language that needlessly excuses inability to respond (e.g., 'I'm only a model', 'I can't access...') when such phrasing is not required to answer the user's request (assessable via role_absolving_phrases_flag = false).",
+    "weight": 2
+  },
+  {
+    "id": "general_quality",
+    "description": "Other important quality factors not covered by listed criteria.",
+    "weight": 5,
+    "always_applicable": true
+  }
+]
