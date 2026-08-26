@@ -20,7 +20,7 @@ This repository contains a small set of sample Microsoft Agent Framework (MAF) a
 
 Before running any sample, you need a Microsoft Foundry project with a deployed chat model. If you've never used Microsoft Foundry before:
 
-1. **Create a Microsoft Foundry resource and project.** In the [Azure AI Foundry portal](https://ai.azure.com), create a new Foundry resource (or use an existing one) and a project inside it. This gives you a **project endpoint** that looks like `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`.
+1. **Create a Microsoft Foundry resource and project.** In the [Microsoft Foundry portal](https://ai.azure.com), create a new Foundry resource (or use an existing one) and a project inside it. This gives you a **project endpoint** that looks like `https://<resource-name>.services.ai.azure.com/api/projects/<project-name>`.
 2. **Deploy a chat model in that project**, for example `gpt-5-mini`. All samples in this repo default to `gpt-5-mini`, so deploying a model with that exact name lets you run every sample without changing any code. Note the **deployment name** you chose — it may differ from the underlying model name.
 3. **Sign in with the Azure CLI** so the samples can authenticate: `az login`. The samples use `DefaultAzureCredential`/`AzureCliCredential`, so being signed in locally is enough — no API keys are needed.
 
@@ -97,6 +97,15 @@ The other three samples do not currently have automated tests; they are intended
 ## Continuous integration
 
 A minimal GitHub Actions workflow (`.github/workflows/build.yml`) builds the .NET solution and builds/tests both Go modules on every push and pull request to `main`. It does not require Foundry credentials since it only validates that the code compiles and unit tests pass.
+
+## Resources
+
+- [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
+- [Microsoft Foundry portal](https://ai.azure.com)
+- [Microsoft Agent Framework documentation](https://learn.microsoft.com/agent-framework/overview/agent-framework-overview)
+- [Microsoft Agent Framework GitHub repository](https://github.com/microsoft/agent-framework)
+- [Deploy and host agents in Microsoft Foundry](https://learn.microsoft.com/azure/ai-foundry/agents/how-to/hosted-agents-overview)
+- [Azure Developer CLI (`azd`) documentation](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview)
 
 ## Notes
 
