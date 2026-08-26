@@ -6,11 +6,13 @@ This repository contains a small set of sample Microsoft Agent Framework applica
 
 - `MAF-Agent-01` — a hosted agent sample that registers a Foundry responses endpoint with `AgentHost`.
 - `MAF-Agent-02` — a console app that creates an AI agent from an Azure AI Foundry project and runs a sample prompt.
+- `MAF-Agent-03` — a Go console app that creates and runs a Microsoft Agent Framework Go agent backed by a Foundry project.
 - `MAF-Agent-01.slnx` — solution file for the two projects.
 
 ## Prerequisites
 
 - .NET 10 SDK
+- Go 1.25 SDK (for `MAF-Agent-03`)
 - Azure CLI installed and signed in (`az login`)
 - An Azure AI Foundry project with a valid `FOUNDRY_PROJECT_ENDPOINT`
 - A deployment in that project, typically exposed through `AZURE_AI_MODEL_DEPLOYMENT_NAME` (or `AZURE_OPENAI_DEPLOYMENT_NAME` in the second sample)
@@ -51,6 +53,14 @@ Run the console sample:
 
 ```powershell
 dotnet run --project .\MAF-Agent-02\MAF-Agent-02.csproj
+```
+
+Run the Go console sample:
+
+```powershell
+$env:FOUNDRY_PROJECT_ENDPOINT = "https://<your-project-endpoint>"
+$env:FOUNDRY_MODEL = "gpt-5-mini"
+go run .\MAF-Agent-03
 ```
 
 ## Notes
