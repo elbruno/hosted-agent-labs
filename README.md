@@ -1,5 +1,7 @@
 # MAF Agent Samples
 
+> **⚠️ This repository has moved.** Development continues at [Azure-Samples/microsoft-foundry-hosted-agents](https://github.com/Azure-Samples/microsoft-foundry-hosted-agents). This repo is archived and no longer updated — please use the new repository for the latest samples, issues, and contributions.
+
 This repository contains a small set of sample Microsoft Agent Framework (MAF) applications that use Microsoft Foundry and Azure AI Projects. Each sample creates a simple "friendly assistant" agent and either runs it once from the console or hosts it as a long-running service.
 
 ## Projects
