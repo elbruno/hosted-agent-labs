@@ -1,43 +1,28 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-requiredVersions:
-  extensions:
-    azure.ai.agents: '>=1.0.0-beta.4'
 name: maf-agent-go-04
 services:
-  ai-project:
-    host: azure.ai.project
-    deployments:
-      - name: gpt-5.4-mini
-        model:
-          format: OpenAI
-          name: gpt-5.4-mini
-          version: '2026-03-17'
-        sku:
-          name: GlobalStandard
-          capacity: 10
-  maf-agent-go-04:
-    host: azure.ai.agent
-    project: .
-    language: go
-    docker:
-      path: Dockerfile
-      remoteBuild: true
-    uses:
-      - ai-project
-    kind: hosted
-    name: maf-agent-go-04
-    displayName: MAF Agent Go 04
-    description: A Microsoft Agent Framework Go agent hosted by Foundry through the Invocations protocol.
-    protocols:
-      - protocol: invocations
-        version: 2.0.0
-    environmentVariables:
-      - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
-        value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
-    container:
-      resources:
-        cpu: '0.5'
-        memory: 1Gi
+    bruno-byok03:
+        host: azure.ai.project
+        endpoint: https://bruno-byok03-resource.services.ai.azure.com/api/projects/bruno-byok03
+    maf-agent-go-04:
+        project: .
+        host: azure.ai.agent
+        language: docker
+        docker:
+            remoteBuild: true
+        uses:
+            - bruno-byok03
+        env:
+            AZURE_AI_MODEL_DEPLOYMENT_NAME: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+        container:
+            resources:
+                cpu: "0.5"
+                memory: 1Gi
+        kind: hosted
+        name: maf-agent-go-04
+        protocols:
+            - protocol: invocations
+              version: 2.0.0
 infra:
-  provider: microsoft.foundry
+    provider: microsoft.foundry

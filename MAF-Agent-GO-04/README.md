@@ -1,6 +1,6 @@
 # MAF-Agent-GO-04
 
-This sample hosts a Microsoft Agent Framework Go agent as a containerized Microsoft Foundry Hosted Agent. It exposes the Agent Framework Go AG-UI handler at `/invocations`, matching Foundry's Invocations protocol, and provides `/readiness` for platform health checks.
+This sample hosts a Microsoft Agent Framework Go agent as a containerized Microsoft Foundry Hosted Agent. It exposes a dual-mode `/invocations` endpoint that accepts plain-text chat prompts or Agent Framework Go AG-UI requests, matching Foundry's Invocations protocol, and provides `/readiness` for platform health checks.
 
 Foundry direct-code deployment currently supports Python and .NET runtimes. This Go sample therefore uses the supported custom-container deployment path defined by `Dockerfile` and `azure.yaml`.
 
@@ -57,6 +57,16 @@ Invoke-WebRequest `
     -Body $body
 ```
 
+For a simple text response, post the prompt directly:
+
+```powershell
+Invoke-RestMethod `
+    -Uri http://localhost:8088/invocations `
+    -Method Post `
+    -ContentType "text/plain" `
+    -Body "Hello!"
+```
+
 ## Build the container
 
 Foundry Hosted Agents require a Linux AMD64 image:
@@ -64,6 +74,10 @@ Foundry Hosted Agents require a Linux AMD64 image:
 ```powershell
 docker build --platform linux/amd64 -t maf-agent-go-04 .
 ```
+
+The runtime container intentionally runs as root. Foundry mounts the per-session
+home directory at `/home/session` as a root-owned volume, so switching this image
+to a non-root user can prevent the container from reaching `/readiness`.
 
 ## Deploy to Microsoft Foundry
 
@@ -76,8 +90,34 @@ azd deploy
 
 The `azure.yaml` file provisions `gpt-5.4-mini` by default. To target an existing Foundry project or model deployment, initialize or configure the azd environment with that project's resource ID and deployment name before deploying.
 
-After deployment, invoke the agent with an AG-UI payload:
+In the Foundry playground, use the **Chat** tab for plain-text prompts. Use
+**Call agent** when you want to send a complete AG-UI payload.
+
+For plain-text invocation from the CLI:
 
 ```powershell
-azd ai agent invoke '{"threadId":"thread-1","runId":"run-1","state":{},"messages":[{"id":"message-1","role":"user","content":"Hello!"}],"tools":[],"context":[],"forwardedProps":{}}'
+azd ai agent invoke maf-agent-go-04 "Hello!" --protocol invocations
+```
+
+For AG-UI invocation, save a payload as `request.json`, then invoke the
+Invocations endpoint:
+
+```powershell
+@{
+    threadId = "thread-1"
+    runId = "run-1"
+    state = @{}
+    messages = @(
+        @{
+            id = "message-1"
+            role = "user"
+            content = "Hello!"
+        }
+    )
+    tools = @()
+    context = @()
+    forwardedProps = @{}
+} | ConvertTo-Json -Depth 5 | Set-Content request.json
+
+azd ai agent invoke maf-agent-go-04 --protocol invocations --input-file request.json
 ```
