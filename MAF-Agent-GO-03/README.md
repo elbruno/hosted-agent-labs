@@ -14,7 +14,7 @@ Copy `.env.example` to a local `.env` file, then set the endpoint and model depl
 
 ```powershell
 $env:FOUNDRY_PROJECT_ENDPOINT = "https://<your-project-endpoint>"
-$env:FOUNDRY_MODEL = "gpt-5-mini"
+$env:AZURE_AI_MODEL_DEPLOYMENT_NAME = "gpt-5-mini"
 ```
 
 ## Run

@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	defaultModel          = "gpt-5.4-mini"
+	defaultModel          = "gpt-5-mini"
 	defaultPort           = 8088
 	maxInvocationBodySize = 1 << 20
 )

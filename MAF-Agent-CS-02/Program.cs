@@ -14,9 +14,9 @@ AIAgent agent = new AIProjectClient(projectEndpoint, new DefaultAzureCredential(
         instructions: "You are a friendly assistant. Keep your answers brief.",
         name: "HelloAgent");
 
-var builder = AgentHost.CreateBuilder(args);                                      // 👈 new line 1
-builder.Services.AddFoundryResponses(agent);                                      // 👈 new line 2
-builder.RegisterProtocol("responses", endpoints => endpoints.MapFoundryResponses()); // 👈 new line 3
+var builder = AgentHost.CreateBuilder(args);
+builder.Services.AddFoundryResponses(agent);
+builder.RegisterProtocol("responses", endpoints => endpoints.MapFoundryResponses());
 
 var app = builder.Build();
 app.Run();

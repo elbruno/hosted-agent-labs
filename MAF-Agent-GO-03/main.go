@@ -27,7 +27,7 @@ func run(ctx context.Context) error {
 		return errors.New("FOUNDRY_PROJECT_ENDPOINT environment variable is not set")
 	}
 
-	model := strings.TrimSpace(os.Getenv("FOUNDRY_MODEL"))
+	model := strings.TrimSpace(os.Getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME"))
 	if model == "" {
 		model = defaultModel
 	}

@@ -4,7 +4,7 @@ using Microsoft.Agents.AI;
 
 var endpoint = Environment.GetEnvironmentVariable("FOUNDRY_PROJECT_ENDPOINT")
     ?? throw new InvalidOperationException("Set FOUNDRY_PROJECT_ENDPOINT environment variable");
-var deployment = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_NAME") ?? "gpt-5-mini";
+var deployment = Environment.GetEnvironmentVariable("AZURE_AI_MODEL_DEPLOYMENT_NAME") ?? "gpt-5-mini";
 
 AIAgent agent = new AIProjectClient(new Uri(endpoint), new AzureCliCredential())
     .AsAIAgent(
