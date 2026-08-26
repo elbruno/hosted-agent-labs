@@ -77,7 +77,7 @@ See `MAF-Agent-GO-04/README.md` for local invocation and Foundry deployment inst
 
 ## Notes
 
-These samples are intended for learning and experimentation with the Microsoft Agents SDK and Azure AI Foundry integration.
+These samples are intended for learning and experimentation with the Microsoft Agents SDK, Microsoft Agent Framework and Microsoft Foundry integration.
 
 ## License
 
