@@ -1,10 +1,10 @@
-# MAF-Agent-03 (Go)
+# MAF-Agent-GO-03
 
 This console sample uses the Microsoft Agent Framework for Go with a Microsoft Foundry project-backed agent.
 
 ## Prerequisites
 
-- Go 1.25 or later
+- Go 1.26 or later
 - Azure CLI signed in with `az login`, or another credential supported by `DefaultAzureCredential`
 - A Microsoft Foundry project endpoint and a deployed chat model
 

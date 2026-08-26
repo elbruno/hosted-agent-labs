@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: maf-agent-01
+name: maf-agent-cs-02
 services:
     bruno-byok03:
         host: azure.ai.project
         endpoint: https://bruno-byok03-resource.services.ai.azure.com/api/projects/bruno-byok03
-    maf-agent-01:
+    maf-agent-cs-02:
         project: .
         host: azure.ai.agent
         language: csharp
@@ -15,14 +15,14 @@ services:
             AZURE_AI_MODEL_DEPLOYMENT_NAME: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
         codeConfiguration:
             dependencyResolution: bundled
-            entryPoint: MAF-Agent-01.dll
+            entryPoint: MAF-Agent-CS-02.dll
             runtime: dotnet_10
         container:
             resources:
                 cpu: "0.5"
                 memory: 1Gi
         kind: hosted
-        name: maf-agent-01
+        name: maf-agent-cs-02
         protocols:
             - protocol: responses
               version: 2.0.0

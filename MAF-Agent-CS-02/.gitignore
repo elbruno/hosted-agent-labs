@@ -31,9 +31,6 @@ packages/
 .env.*
 !.env.example
 
-# Agent tooling
-.agentignore
-
 # OS files
 .DS_Store
 Thumbs.db
